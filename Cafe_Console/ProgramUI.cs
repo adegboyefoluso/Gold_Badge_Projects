@@ -72,7 +72,7 @@ namespace Cafe_Console
                       //  DeleteMeal();
                         break;
                     case "5":
-                      //  GetAMeal();
+                        GetMenuById();
                         break;
                     case "6":
                         running = false;
@@ -239,6 +239,50 @@ namespace Cafe_Console
             }
             Console.ResetColor();
             Console.ReadKey();
+        }
+
+        private void GetMenuById()
+        {
+            Console.Clear();
+            Console.WriteLine($"\n\n{"Meal Number",-10}| {"Meal Name",-10}|{"Meal Description",-40}|{"Meal Price"}");
+            Console.WriteLine("...................................................................................");
+
+            foreach (var item in _MenuRepo.ReadListOfMeal())
+            {
+                Console.WriteLine($"{item.MealNumber,-10} | {item.MealName,-10}|{item.Description,-40}|{item.Price}");
+
+            }
+            Console.WriteLine("\n\nSelect the Menu NUmber from the Menu List\n");
+            
+            bool InvalidMealId = true;
+            while (InvalidMealId)
+            {
+                Console.Write("Enter Meal Id from the Menu List : ");
+                string stringMealId = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(stringMealId))
+                {
+                    Console.WriteLine("Please enter a valid MealId (press any key to continue)");
+                    Console.ReadKey();
+                }
+                else
+                {
+                    int mealId = int.Parse(stringMealId);
+                    var meal = _MenuRepo.GetMealByMealNumber(mealId);
+                    if(meal is null)
+                    {
+
+                        Console.WriteLine("\n\nSorry we dont have an Meal for the number\n\n");
+                    }
+                    else {
+                        Console.WriteLine($"\n\n\t\tMeal Number: {meal.MealName}\n" +
+                     $"\t\tMeal Description: {meal.Description}\n" +
+                     $"\t\tMeal Price: {meal.Price}\n" +
+                     $"\t\tMeal Number: {meal.MealName}\n\n");
+                        }
+                    InvalidMealId = false;
+                    ContinueMessage();
+                }
+            }
         }
 
     }
