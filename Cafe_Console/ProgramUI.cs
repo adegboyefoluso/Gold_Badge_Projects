@@ -66,7 +66,7 @@ namespace Cafe_Console
                         GetAllMenu();
                         break;
                     case "3":
-                       // UpdateMeal();
+                        UpdateMeal();
                         break;
                     case "4":
                       //  DeleteMeal();
@@ -283,6 +283,170 @@ namespace Cafe_Console
                     ContinueMessage();
                 }
             }
+            
+        }
+        private void UpdateMeal()
+        {
+            Console.Clear();
+            Console.WriteLine($"\n\n{"Meal Number",-10}| {"Meal Name",-10}|{"Meal Description",-40}|{"Meal Price"}");
+            Console.WriteLine("...................................................................................");
+
+            foreach (var item in _MenuRepo.ReadListOfMeal())
+            {
+                Console.WriteLine($"{item.MealNumber,-10} | {item.MealName,-10}|{item.Description,-40}|{item.Price}");
+
+            }
+            Console.WriteLine("\n\nSelect the Menu number for the meal to be updated from the Menu List\n");
+
+            bool InvalidMealId = true;
+            string stringMealId = " ";
+            int mealId = 0;
+            while (InvalidMealId)
+            {
+                Console.Write("Enter Meal Id from the Menu List : ");
+                stringMealId = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(stringMealId))
+                {
+                    Console.WriteLine("Please enter a valid MealId (press any key to continue)");
+                    Console.ReadKey();
+                }
+                else
+                {
+                     mealId = int.Parse(stringMealId);
+                    InvalidMealId = false;
+
+                }
+            }
+
+            var meal = _MenuRepo.GetMealByMealNumber(mealId);
+            if (meal is null)
+            {
+
+                Console.WriteLine("\n\nInvalid Number\n\n");
+            }
+            else
+            {
+                Console.WriteLine($"\n\n\t\tMeal Number: {meal.MealName}\n" +
+             $"\t\tMeal Description: {meal.Description}\n" +
+             $"\t\tMeal Price: {meal.Price}\n" +
+             $"\t\tMeal Number: {meal.MealName}\n\n");
+
+            }
+
+            var menu = new Menu();
+
+            bool invalidName = true;
+            while (invalidName)
+            {
+                Console.Write("Meal Name: ");
+                string mealName = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(mealName))
+                {
+                    Console.WriteLine("Please enter a valid Meal (press any key to continue)");
+                    Console.ReadKey();
+                }
+                else
+                {
+                    menu.MealName = mealName;
+                    invalidName = false;
+                }
+
+            }
+            bool invalidIngrdeient = true;
+            while (invalidIngrdeient)
+            {
+                Console.Write("Enter the Meal Ingredients for the Meal and Enter No  to  exit: ");
+                string ingredient = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(ingredient))
+                {
+                    Console.WriteLine("Please enter a valid ingredient: (press any key to continue)");
+                    Console.ReadKey();
+                }
+                else
+                {
+                    bool checking = true;
+                    while (checking)
+                    {
+                        if (ingredient == "n" || ingredient == "no")
+                        {
+                            invalidIngrdeient = false;
+                            break;
+                        }
+                        else
+                        {
+                            menu.Ingredients.Add(ingredient);
+                            checking = false;
+                        }
+                    }
+                }
+
+            }
+            bool InvalidMealNo = true;
+            while (InvalidMealNo)
+            {
+                Console.Write("Enter Meal Id: ");
+                string stringMealNo = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(stringMealNo))
+                {
+                    Console.WriteLine("Please enter a valid MealId (press any key to continue)");
+                    Console.ReadKey();
+                }
+                else
+                {
+                    int mealIde = int.Parse(stringMealNo);
+                    menu.MealNumber = mealIde;
+                    InvalidMealNo = false;
+                }
+            }
+
+            bool invalidDescription = true;
+            while (invalidDescription)
+            {
+                Console.Write("Description: ");
+                string description = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(description))
+                {
+                    Console.WriteLine("Please enter a valid Meal (press any key to continue)");
+                    Console.ReadKey();
+                }
+                else
+                {
+                    menu.Description = description;
+                    invalidDescription = false;
+                }
+
+            }
+
+            bool invalidPrice = true;
+            while (invalidPrice)
+            {
+                Console.Write("Meal Price: ");
+                string price = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(price))
+                {
+                    Console.WriteLine("Please enter a valid Meal Price (press any key to continue)");
+                    Console.ReadKey();
+                }
+                else
+                {
+                    double pdrice = double.Parse(price);
+                    menu.Price = pdrice;
+
+                    invalidPrice = false;
+                }
+
+            }
+            if (_MenuRepo.UpdateMeal(mealId, menu))
+            {
+                Console.WriteLine("\nMenu updated succesfully\n");
+                ContinueMessage();
+            }
+            else
+            {
+                Console.WriteLine("\nUpdate Failed\n");
+                ContinueMessage();
+            }
+
         }
 
     }
