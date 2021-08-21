@@ -69,7 +69,7 @@ namespace Cafe_Console
                         UpdateMeal();
                         break;
                     case "4":
-                      //  DeleteMeal();
+                        DeleteMeal();
                         break;
                     case "5":
                         GetMenuById();
@@ -326,7 +326,7 @@ namespace Cafe_Console
             }
             else
             {
-                Console.WriteLine($"\n\n\t\tMeal Number: {meal.MealName}\n" +
+             Console.WriteLine($"\n\n\t\tMeal Number: {meal.MealName}\n" +
              $"\t\tMeal Description: {meal.Description}\n" +
              $"\t\tMeal Price: {meal.Price}\n" +
              $"\t\tMeal Number: {meal.MealName}\n\n");
@@ -445,6 +445,64 @@ namespace Cafe_Console
             {
                 Console.WriteLine("\nUpdate Failed\n");
                 ContinueMessage();
+            }
+
+        }
+        private void DeleteMeal()
+        {
+            Console.Clear();
+            Console.WriteLine($"\n\n{"Meal Number",-10}| {"Meal Name",-10}|{"Meal Description",-40}|{"Meal Price"}");
+            Console.WriteLine("...................................................................................");
+
+            foreach (var item in _MenuRepo.ReadListOfMeal())
+            {
+                Console.WriteLine($"{item.MealNumber,-10} | {item.MealName,-10}|{item.Description,-40}|{item.Price}");
+
+            }
+            Console.WriteLine("\n\nSelect the Menu number for the meal to be Deleted from the Menu List\n");
+
+            bool InvalidMealId = true;
+            string stringMealId = " ";
+            int mealId = 0;
+            while (InvalidMealId)
+            {
+                Console.Write("Enter Meal Id from the Menu List : ");
+                stringMealId = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(stringMealId))
+                {
+                    Console.WriteLine("Please enter a valid MealId (press any key to continue)");
+                    Console.ReadKey();
+                }
+                else
+                {
+                    mealId = int.Parse(stringMealId);
+                    InvalidMealId = false;
+
+                }
+            }
+             var meal = _MenuRepo.GetMealByMealNumber(mealId);
+            
+             Console.WriteLine($"\n\n\t\tMeal Number: {meal.MealName}\n" +
+             $"\t\tMeal Description: {meal.Description}\n" +
+             $"\t\tMeal Price: {meal.Price}\n" +
+             $"\t\tMeal Number: {meal.MealName}\n\n");
+
+            Console.WriteLine("Do you really wanty to delete this Meal, enter y for yes and n for no");
+            string response = Console.ReadLine().ToLower();
+            if (response == "n" || response == "no" || response == "No" || response == "N")
+            {
+                Console.WriteLine("Meal not deleted");
+            }
+            else
+            {
+                if (_MenuRepo.DeleteMeal(mealId))
+                {
+                    Console.WriteLine("Meal succesfully deleted");
+                    ContinueMessage();
+                }
+                else { Console.WriteLine("Meal could not be Deleted");
+                    ContinueMessage();
+                }
             }
 
         }
