@@ -139,6 +139,7 @@ namespace ClaimConsole
                 }
                 else
                 {
+                    
                     double doubleClaimAmount = double.Parse(stingAmount);
                     claim.ClaimAmount = doubleClaimAmount;
                     invalidAmount = false;
@@ -200,17 +201,14 @@ namespace ClaimConsole
 
             }
 
-            if (claim.Isvalid)
+            _claimrepository.AddQueue(claim);
+            if(claim.Isvalid)
             {
-                _claimrepository.AddQueue(claim);
-                Console.WriteLine("Claim is Added Successfuly");
-                ContinueMessage();
+                Console.WriteLine("This Claim is Valid");
             }
-            else
-            {
-                Console.WriteLine("Claim is out of range it could noit be proccessed");
-                ContinueMessage();
-            }
+            else { Console.WriteLine("This Claim is not Valid"); }
+            Console.WriteLine("Claim Added Succesfully");
+            ContinueMessage();
 
 
 
@@ -227,7 +225,7 @@ namespace ClaimConsole
             Console.WriteLine($"\n{"ClaimID",-10} {"Type",-10} {"Description",-30}{"Amount",-10}{"Date Of Accident",-20}{"Date of Claim",-15} {"Claim is Valid"}");
             foreach (var item in _claimrepository.GetAllClaim())
             {
-                Console.WriteLine($"\n{item.ClaimID,-10} {item.ClaimType,-10} {item.Description,-30}{item.ClaimAmount,-10}{item.DateOfIncident.ToString("d"),-20}{item.DateOfClaim.ToString("d"),-15} {item.Isvalid}");
+                Console.WriteLine($"\n{item.ClaimID,-10} {item.ClaimType,-10} {item.Description,-30}${item.ClaimAmount,-10}{item.DateOfIncident.ToString("d"),-20}{item.DateOfClaim.ToString("d"),-15} {item.Isvalid}");
             }
             ContinueMessage();
         }
