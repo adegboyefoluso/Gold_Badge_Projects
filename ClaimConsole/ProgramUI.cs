@@ -27,8 +27,8 @@ namespace ClaimConsole
                 ClaimAmount = 2800,
                 ClaimType = TyPeOfClaim.Car,
                 Description = "Car Accident on I 465",
-                DateOfClaim = new DateTime(08 / 01 / 2021),
-                DateOfIncident = new DateTime(07 / 14 / 2021)
+                DateOfClaim = new DateTime(2021,08,01),
+                DateOfIncident = new DateTime(2021,07,02)
 
             };
 
@@ -67,13 +67,13 @@ namespace ClaimConsole
                         AddClaim();
                         break;
                     case "2":
-
+                        GetAllClaim();
                         break;
                     case "3":
 
                         break;
                     case "4":
-
+                        ProcessClaim();
                         break;
                     case "5":
 
@@ -221,7 +221,49 @@ namespace ClaimConsole
             Console.ReadKey();
         }
 
-       
+       public void GetAllClaim()
+        {
+            Console.Clear();
+            Console.WriteLine($"\n{"ClaimID",-10} {"Type",-10} {"Description",-30}{"Amount",-10}{"Date Of Accident",-20}{"Date of Claim",-15} {"Claim is Valid"}");
+            foreach (var item in _claimrepository.GetAllClaim())
+            {
+                Console.WriteLine($"\n{item.ClaimID,-10} {item.ClaimType,-10} {item.Description,-30}{item.ClaimAmount,-10}{item.DateOfIncident.ToString("d"),-20}{item.DateOfClaim.ToString("d"),-15} {item.Isvalid}");
+            }
+            ContinueMessage();
+        }
+
+        public void ProcessClaim()
+        {
+            if (_claimrepository.GetAllClaim().Count == 0)
+            {
+                Console.WriteLine("There is no more claim to be processed");
+                ContinueMessage();
+            }
+            else
+            {
+
+            Console.WriteLine("\t\tHere are the details  for the next claim to be handled");
+            var claim = _claimrepository.DisplayNextClaim();
+            Console.WriteLine($"ClaimID:{claim.ClaimID}\n" +
+                $"Type:{claim.ClaimType}\n" +
+                $"Description:{claim.Description}\n" +
+                $"Amount:{claim.Description}\n" +
+                $"Date Of Accident:{claim.DateOfIncident.ToString("d")}\n" +
+                $"Date Of Claim:{claim.DateOfClaim.ToString("d")}\n" +
+                $"Is Claim valid:{claim.Isvalid}\n\n");
+            Console.Write("Do you want to deal with this claim now(y/n)?");
+            string response = Console.ReadLine().ToLower();
+            if (response == "y")
+            {
+                _claimrepository.ProccessNextClaim();
+                Console.WriteLine("Claim successfully Proccesed.");
+                ContinueMessage();
+            }
+            
+            }
+
+            
+        }
 
     }
 
