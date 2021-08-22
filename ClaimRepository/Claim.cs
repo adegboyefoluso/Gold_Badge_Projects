@@ -42,7 +42,11 @@ namespace ClaimRepository
 
         public Claim(int claimId,string description,double claimAmount,DateTime dateOfIncident,DateTime dateOfClaim,TyPeOfClaim claimType)
         {
-
+            Description = description;
+            ClaimAmount = claimAmount;
+            DateOfIncident = dateOfIncident;
+            DateOfClaim = dateOfClaim;
+            ClaimType = claimType;
         }
 
     }
