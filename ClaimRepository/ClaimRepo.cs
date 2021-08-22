@@ -24,5 +24,17 @@ namespace ClaimRepository
         {
             return _ClaimQueue;
         }
+        //==============================Get Next Claim=====================//  
+        public Claim DisplayNextClaim()
+        {
+            var claim = _ClaimQueue.Peek();
+            return claim;
+        }
+        //=================================Treat next Claim====================//
+        public Claim ProccessNextClaim()
+        {
+           return  _ClaimQueue.Dequeue();
+        }
+
     }
 }
