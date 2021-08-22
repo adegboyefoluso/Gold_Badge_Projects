@@ -217,7 +217,7 @@ namespace ClaimConsole
         }
         public void ContinueMessage()
         {
-            Console.WriteLine("\nPress any key to continue...");
+            Console.WriteLine("\nPress any key to continue.......");
             Console.ReadKey();
         }
 
