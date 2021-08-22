@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClaimRepository
 {
+
     public enum TyPeOfClaim
     {
         Car=1,
@@ -46,4 +47,6 @@ namespace ClaimRepository
 
     }
    
+
+  
 }
