@@ -19,5 +19,10 @@ namespace ClaimRepository
            return  (_ClaimQueue.Count > count) ? true : false;
 
         }
+        //==============================List of Claim======================//
+        public Queue<Claim> GetAllClaim()
+        {
+            return _ClaimQueue;
+        }
     }
 }
