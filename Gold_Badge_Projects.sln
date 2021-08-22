@@ -31,7 +31,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClaimTest", "ClaimTest\Clai
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClaimRepository", "ClaimRepository\ClaimRepository.csproj", "{C58489EF-8277-47CD-B103-EE388777D074}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClaimConsole", "ClaimConsole\ClaimConsole.csproj", "{99394998-05BC-4C01-9887-0C9D4B8445C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClaimConsole", "ClaimConsole\ClaimConsole.csproj", "{99394998-05BC-4C01-9887-0C9D4B8445C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BadgeRepositoryPattern", "BadgeRepositoryPattern\BadgeRepositoryPattern.csproj", "{4F397348-784C-49C9-AE8B-F3AF3561C6BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,6 +69,10 @@ Global
 		{99394998-05BC-4C01-9887-0C9D4B8445C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99394998-05BC-4C01-9887-0C9D4B8445C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99394998-05BC-4C01-9887-0C9D4B8445C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F397348-784C-49C9-AE8B-F3AF3561C6BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F397348-784C-49C9-AE8B-F3AF3561C6BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F397348-784C-49C9-AE8B-F3AF3561C6BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F397348-784C-49C9-AE8B-F3AF3561C6BF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -79,6 +85,7 @@ Global
 		{BE158919-A092-4B0F-9A7A-9945A052E2AD} = {62BC03EC-0B2E-4642-A9AD-70AA847C064D}
 		{C58489EF-8277-47CD-B103-EE388777D074} = {62BC03EC-0B2E-4642-A9AD-70AA847C064D}
 		{99394998-05BC-4C01-9887-0C9D4B8445C1} = {62BC03EC-0B2E-4642-A9AD-70AA847C064D}
+		{4F397348-784C-49C9-AE8B-F3AF3561C6BF} = {D3EBBE0A-5324-4CA6-B1E9-5F198EE08143}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F480E815-55A8-4670-A239-2DB5C4C22D26}
