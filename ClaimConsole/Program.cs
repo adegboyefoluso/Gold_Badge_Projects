@@ -1,12 +1,14 @@
 ﻿using System;
 
-namespace Claims
+namespace ClaimConsole
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            ProgramUI programUI = new ProgramUI();
+            programUI.Run();
+
         }
     }
 }

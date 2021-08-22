@@ -9,14 +9,12 @@ namespace ClaimRepository
     public class ClaimRepo
     {
         private readonly Queue<Claim> _ClaimQueue = new Queue<Claim>();
-        public bool AddQueue(Claim model)
+        public void AddQueue(Claim model)
         {
-            int count = 0;
-            int IdCount = 100;
-            model.ClaimID = IdCount;
-            IdCount = IdCount + 1;
+           
+
             _ClaimQueue.Enqueue(model);
-           return  (_ClaimQueue.Count > count) ? true : false;
+           
 
         }
         //==============================List of Claim======================//
