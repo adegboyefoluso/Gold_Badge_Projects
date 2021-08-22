@@ -47,8 +47,8 @@ namespace Cafe_Console
             bool running = true;
             while (running)
             {
-                Console.WriteLine("\t\t\t\tMenu");
-                Console.WriteLine("Select A Menu Option:\n" +
+                Console.WriteLine("\n\t\t\t\tMenu");
+                Console.WriteLine("\nSelect A Menu Option:\n\n" +
                     "1.Add Meal\n" +
                     "2.Menu List\n" +
                     "3.Update Meal\n" +
@@ -87,6 +87,7 @@ namespace Cafe_Console
                 Console.Clear();
                 Console.WriteLine("Goodbye!");
                 Thread.Sleep(2000);
+                Console.Clear();
 
             }
         }
@@ -229,12 +230,12 @@ namespace Cafe_Console
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Black;
             Console.BackgroundColor = ConsoleColor.White;
-            Console.WriteLine($"{"Meal Number",-10}| {"Meal Name",-10}|{"Meal Description",-40}|{"Meal Price"}");
-            Console.WriteLine("...................................................................................");
+            Console.WriteLine($"\t{"Meal Number",-10}| {"Meal Name",-10}|{"Meal Description",-40}|{"Meal Price"}");
+            Console.WriteLine("\t...................................................................................");
 
             foreach (var item in _MenuRepo.ReadListOfMeal())
             {
-                Console.WriteLine($"{item.MealNumber,-10} | {item.MealName,-10}|{item.Description,-40}|{item.Price}");
+                Console.WriteLine($"\t{item.MealNumber,-10} | {item.MealName,-10}|{item.Description,-40}|{item.Price}");
                
             }
             Console.ResetColor();
@@ -244,12 +245,12 @@ namespace Cafe_Console
         private void GetMenuById()
         {
             Console.Clear();
-            Console.WriteLine($"\n\n{"Meal Number",-10}| {"Meal Name",-10}|{"Meal Description",-40}|{"Meal Price"}");
-            Console.WriteLine("...................................................................................");
+            Console.WriteLine($"\t{"Meal Number",-10}| {"Meal Name",-10}|{"Meal Description",-40}|{"Meal Price"}");
+            Console.WriteLine("\t...................................................................................");
 
             foreach (var item in _MenuRepo.ReadListOfMeal())
             {
-                Console.WriteLine($"{item.MealNumber,-10} | {item.MealName,-10}|{item.Description,-40}|{item.Price}");
+                Console.WriteLine($"\t{item.MealNumber,-10} | {item.MealName,-10}|{item.Description,-40}|{item.Price}");
 
             }
             Console.WriteLine("\n\nSelect the Menu NUmber from the Menu List\n");
@@ -274,10 +275,10 @@ namespace Cafe_Console
                         Console.WriteLine("\n\nSorry we dont have an Meal for the number\n\n");
                     }
                     else {
-                        Console.WriteLine($"\n\n\t\tMeal Number: {meal.MealName}\n" +
+                        Console.WriteLine($"\n\n\t\tMeal Number: {meal.MealNumber}\n" +
                      $"\t\tMeal Description: {meal.Description}\n" +
                      $"\t\tMeal Price: {meal.Price}\n" +
-                     $"\t\tMeal Number: {meal.MealName}\n\n");
+                     $"\t\tMeal Name: {meal.MealName}\n\n");
                         }
                     InvalidMealId = false;
                     ContinueMessage();
@@ -285,6 +286,7 @@ namespace Cafe_Console
             }
             
         }
+        //=================================Update Method========================//
         private void UpdateMeal()
         {
             Console.Clear();
@@ -448,6 +450,7 @@ namespace Cafe_Console
             }
 
         }
+        //====================================Delete Method====================================//
         private void DeleteMeal()
         {
             Console.Clear();
