@@ -46,5 +46,16 @@ namespace OutingRepositoryPattern
             }
         }
 
+        // Total Cost for All Event
+        public double TotalcostOFAllEvent()
+        {
+            return _outingRepo.Sum(o => o.TotalCost);
+        }
+        //Total cost of each Event
+        public double TotalCostByEventType(TypeOfEvent even)
+        {
+            return _outingRepo.Where(o => o.EventType == even).Sum(o => o.TotalCost);
+        }
+
     }
 }

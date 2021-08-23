@@ -27,12 +27,13 @@ namespace OutingRepositoryPattern
             } }
 
         public Outing() { }
-        public Outing(int eventId,int numberOfPeople, DateTime dateOfEvent, double costPerPerson)
+        public Outing(int eventId,int numberOfPeople, DateTime dateOfEvent, double costPerPerson, TypeOfEvent eventType)
         {
             EventId = eventId;
             NumberOfPeople = numberOfPeople;
             DateOfEvent = dateOfEvent;
             CostPerPerson = costPerPerson;
+            EventType = eventType;
         }
 
     }
