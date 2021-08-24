@@ -6,7 +6,6 @@ clasify insurance claims to diffrent categories.
 The folowing are the properties of the **Claim** class
 
 
-```
 - CaimID
 -  ClaimType
 -  Description
@@ -15,4 +14,3 @@ The folowing are the properties of the **Claim** class
 - DateOfClaim
 - IsValid
 
-```
