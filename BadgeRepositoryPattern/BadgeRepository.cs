@@ -39,23 +39,26 @@ namespace BadgeRepositoryPattern
         public KeyValuePair<int, List<string>> GetBadgeFrommDIcByBadgeID(int badgeID)
 
         {
-            KeyValuePair<int, List<string>> kvpfirst = new KeyValuePair<int, List<string>>();
+            KeyValuePair<int, List<string>> kvpfirst = new KeyValuePair<int, List<string>>();  
             //search through badge dictionary to find the badge with the right id
             //if badgeid is equal to parameter passed in (badgeID).
             //return badge
-            foreach (KeyValuePair<int, List<string>> kvp in Badges)
+           
+            
+            KeyValuePair<int, List<string>> kvp = Badges.SingleOrDefault(k => k.Key == badgeID);
+            if (Badges.ContainsKey(badgeID))
             {
-                if (kvp.Key == badgeID)
-                {
-                    return kvp;
-                }
+                return kvp;
             }
-            return kvpfirst;
+
+            else return kvpfirst;
+            
         }
 
         public void RemoveDooronBadge(int badgeid, string olddoor)
         {
             KeyValuePair<int, List<string>> anotherkvp = GetBadgeFrommDIcByBadgeID(badgeid);
+            
             List<string> doorList = anotherkvp.Value;
             foreach (string door in doorList)
             {
@@ -69,12 +72,16 @@ namespace BadgeRepositoryPattern
 
 
         }
-        public void AddDoorToBadge(int badgeid, string newdoor)
+        public bool AddDoorToBadge(int badgeid, string newdoor)
         {
             KeyValuePair<int, List<string>> oldbadge = GetBadgeFrommDIcByBadgeID(badgeid);
             List<string> doorList = oldbadge.Value;
-            doorList.Add(newdoor);
-
+            if (doorList.Contains(newdoor)) return false;
+            else
+            {
+                doorList.Add(newdoor);
+                return true;
+            }
 
         }
 

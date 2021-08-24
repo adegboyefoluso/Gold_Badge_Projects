@@ -60,26 +60,66 @@ namespace BadgeConsole
             }
 
         }
+        // Add Method  for Addning door toa Badge and storing the Badge in the data Base
         private void AddABadge()
         {
             Console.Clear();
             Badge mybadge = new Badge();
-            Console.Write("What is the number on the badge?:");
-            mybadge.BadgeID = int.Parse(Console.ReadLine());
-
+            //===========================This block ensure that an white sopace is not eneted or a null badge;======================
+            bool invalidBadgeId = true;
+            while (invalidBadgeId)
+            {
+                Console.Write("What is the number on the badge?:"); ;
+                string stringBadgelId = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(stringBadgelId))
+                {
+                    Console.WriteLine("Please enter a valid BadgeId (press any key to continue)");
+                    Console.ReadKey();
+                }
+                else
+                {
+                    int badgeId = int.Parse(stringBadgelId);
+                    mybadge.BadgeID = badgeId;
+                    invalidBadgeId = false;
+                }
+            }
+            //=====================================This block ensure that at least a door is assigned to a badge================
             bool keeprunning = true;
             while (keeprunning)
             {
-                Console.Write("List a door that it needs accsess to:");
-
-                string response2 = Console.ReadLine();
-                mybadge.DoorNameList.Add(response2);
-
-                Console.Write("Any other door(Y/N):");
-                string response3 = Console.ReadLine().ToUpper();
-                if (response3 == "N")
+                
+                string door = " ";
+                bool invalidDoorId = true;
+                while (invalidDoorId)
                 {
-                    keeprunning = false;
+                    Console.Write("List a door that it needs accsess to:");
+                     door = Console.ReadLine();
+                    if (string.IsNullOrWhiteSpace(door))
+                    {
+                        Console.WriteLine("Please enter a valid Door (press any key to continue)");
+                        Console.ReadKey();
+                    }
+                    else
+                    {
+                        invalidDoorId = false;
+                    }
+                }
+
+                if (mybadge.DoorNameList.Contains(door))
+                {
+                    Console.WriteLine("This door has already been added to the Badge");
+                }
+                else
+                {
+                    mybadge.DoorNameList.Add(door);
+
+                    Console.Write("Any other door(Y/N):");
+                    string response3 = Console.ReadLine().ToUpper();
+                    if (response3 == "N")
+                    {
+                        keeprunning = false;
+                    }
+
                 }
             }
             _badgeRepository.AddBadgetoDic(mybadge);
@@ -87,25 +127,47 @@ namespace BadgeConsole
 
 
         }
+        //==================================adding and removing a door from a badge=========================
         private void EditABadge()
         {
             Console.Clear();
-            Console.Write("What is the Badge Numnber To Update?:");
+            int response1 = 0;
+            bool invalidBadgeId = true;
+            while (invalidBadgeId)
+            {
+                Console.WriteLine("What Badge  Number do you want to update?");
+                string stringBadgeld = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(stringBadgeld))
+                {
+                    Console.WriteLine("Please enter a valid BadgeID (press any key to continue)");
+                    Console.ReadKey();
+                }
+                else
+                {
+                    response1 = int.Parse(stringBadgeld);
 
+                    invalidBadgeId = false;
+                }
+            }
 
-            int response = int.Parse(Console.ReadLine());
-            // Badge mybadge = new Badge();
             KeyValuePair<int, List<string>> mybadge = new KeyValuePair<int, List<string>>();
-            mybadge = _badgeRepository.GetBadgeFrommDIcByBadgeID(response);
-            string response1 = string.Join("&", mybadge.Value);
+            mybadge = _badgeRepository.GetBadgeFrommDIcByBadgeID(response1);
+            if (mybadge.Key != response1)
+            {
+                Console.WriteLine("Invalid Id");
+            }
+            else
+            {
 
-            Console.WriteLine($"{mybadge.Key} has access to doors {response1}\n" +
+            string response2 = string.Join("&", mybadge.Value);
+
+            Console.WriteLine($"{mybadge.Key} has access to doors {response2}\n" +
                 "\n");
             Console.WriteLine("What Would You Like to do? Select the right option \n" +
                 "\t\t\t1.Remove a Door\n" +
                 "\t\t\t2.Add a door");
-            string response2 = Console.ReadLine();
-            switch (response2)
+            string response3 = Console.ReadLine();
+            switch (response3)
             {
                 case "1":
 
@@ -148,6 +210,8 @@ namespace BadgeConsole
                     break;
 
             }
+            }
+            
 
         }
 
@@ -161,25 +225,58 @@ namespace BadgeConsole
             Console.WriteLine($"{"Badge#",-15}{"Door Access"}");                             //Formating the heading
             foreach (KeyValuePair<int, List<string>> badge in badges)                        //iterate over the dictionary using (keyvaluepair which returs bioth the key  and the value
             {
+                
                 string response = string.Join(",", badge.Value);                             //string.Join  format the item in Doorlist by listing them and separtaing them with comma  (,)
+                if (badge.Value == null)
+                {
+                    response= "This is an empty Badge yet to be assigned a door";
+                }
+               
                 Console.WriteLine($"{badge.Key,-15}{response}");
             }
+            
         }
 
         private void RelplaceADoor()
         {
-            Console.WriteLine("What Badge  Number do you want to update?");
-            int response1 = int.Parse(Console.ReadLine());
+            int response1=0;
+            bool invalidBadgeId = true;
+            while (invalidBadgeId)
+            {
+                Console.WriteLine("What Badge  Number do you want to update?");
+                string stringBadgeld = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(stringBadgeld))
+                {
+                    Console.WriteLine("Please enter a valid BadgeID (press any key to continue)");
+                    Console.ReadKey();
+                }
+                else
+                {
+                     response1 = int.Parse(stringBadgeld);
+
+                    invalidBadgeId = false;
+                }
+            }
+
+            KeyValuePair<int, List<string>> mybadge = _badgeRepository.GetBadgeFrommDIcByBadgeID(response1);
+            if (mybadge.Key != response1)
+            {
+                Console.WriteLine($"{response1}  is not a valid Badge");
+            }
+            else
+            {
 
             Console.WriteLine("what door are you removing from the Badge?");
             string response2 = Console.ReadLine();
             Console.WriteLine("What door are you adding to the Badge?");
             string response3 = Console.ReadLine();
             _badgeRepository.ReplaceADoor(response1, response2, response3);
-            KeyValuePair<int, List<string>> mybadge = _badgeRepository.GetBadgeFrommDIcByBadgeID(response1);
+            
 
             string reponse4 = string.Join("&", mybadge.Value);
             Console.WriteLine($"Badge{mybadge.Key} has access to doors {reponse4}");
+            }
+
 
 
 
