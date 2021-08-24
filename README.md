@@ -3,5 +3,5 @@ This Project was completed by **Foluso Adegboye** as a requirement in fullfilmen
 Eight different Console Applications that are included in this project.Each is unique in solving a business challenge for an Insurance Company called **Komodo Insurance**
 
 # Challenges
-- [Challenge1 Cafe ]
+- [Challenge1 Cafe ](./Cafe)
 
