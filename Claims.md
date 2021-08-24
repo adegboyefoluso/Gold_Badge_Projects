@@ -7,9 +7,9 @@ The folowing are the properties of the **Claim** class
 
 
 ```
-- CaimID
-- ClaimType
-- Description
+-  CaimID
+-  ClaimType
+-  Description
 - ClaimAmount
 - DateOfIncident
 - DateOfClaim
