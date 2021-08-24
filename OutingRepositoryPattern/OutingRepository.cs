@@ -11,9 +11,12 @@ namespace OutingRepositoryPattern
         private readonly List<Outing> _outingRepo = new List<Outing>();
 
         //Add outing 
-        public void AddOuting(Outing model)
+        public bool AddOuting(Outing model)
         {
+            int count = _outingRepo.Count;
             _outingRepo.Add(model);
+            return _outingRepo.Count > count ? true : false;
+
         }
 
         //Get All Outing

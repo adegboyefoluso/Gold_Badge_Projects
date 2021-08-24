@@ -146,6 +146,8 @@ namespace ClaimConsole
                 }
 
             }
+
+            //Description
             bool invalidClaimDescription = true;
             while (invalidClaimDescription)
             {
