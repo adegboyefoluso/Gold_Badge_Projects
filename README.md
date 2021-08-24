@@ -6,8 +6,8 @@ Eight different Console Applications that are included in this project.Each is u
 - [Komodo Cafe](./Cafe.md)
 - [Komodo Claim](./Claims.md)
 - [Komodo Badge](./Badge.md)
-- [Komodo Outing](.Outing.md)
-- [Komodo Green](.Green.md)
+- [Komodo Outing](./Outing.md)
+- [Komodo Green](./Green.md)
 - [Komodo Smart Insuarnce](./Smart.md)
 
 
