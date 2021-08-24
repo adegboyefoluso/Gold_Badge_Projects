@@ -4,5 +4,6 @@ Eight different Console Applications that are included in this project.Each is u
 
 # Challenges
 - [Komodo Cafe](./Cafe.md)
+- [Komodo Claim](./Claims.md)
 
 
