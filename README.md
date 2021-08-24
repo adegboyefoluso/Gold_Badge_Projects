@@ -8,7 +8,7 @@ Eight different Console Applications that are included in this project.Each is u
 - [Komodo Badge](./Badge.md)
 - [Komodo Outing](./Outing.md)
 - [Komodo Green](./Green.md)
-- [Komodo Smart Insuarnce](./Smart.md)
+- [Komodo Smart Insuarnce](./SmartInsuarnce.md)
 - [Komodo Greeting](./Greeting.md)
 
 
