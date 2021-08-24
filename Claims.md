@@ -19,5 +19,5 @@ The application utilizes **POCO** Repository pattern with the claim Repository a
 The Agent /user can 
     1. see all claims
     2. Take care of next claim 
-    3. Emter a new Claim
+    3. Enter a new Claim
 
