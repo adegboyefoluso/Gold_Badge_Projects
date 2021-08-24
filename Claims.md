@@ -7,7 +7,7 @@ The folowing are the properties of the **Claim** class
 
 
 ```
--CaimID
+- CaimID
 -  ClaimType
 -  Description
 - ClaimAmount
