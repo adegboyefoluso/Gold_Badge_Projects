@@ -14,11 +14,11 @@ The folowing are the properties of the **Claim** class
 - DateOfClaim
 - IsValid
 
-```
+
 The application utilizes [POCO](https://docs.microsoft.com/en-us/dotnet/csharp/fundamentals/object-oriented/objects) Repository pattern with the claim Repository abstracting all the Method CRUD
 The Agent /user can 
  1. see all claims
  2. Take care of next claim 
  3. Enter a new Claim
  
-```
+
