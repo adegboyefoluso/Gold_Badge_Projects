@@ -1,4 +1,7 @@
 # Gold_Badge_Projects
-This is a Project was completed by **Foluso Adegboye** as a requirement im fullfilment towards the completetion of **Gold Badge**. There are 
+This Project was completed by **Foluso Adegboye** as a requirement in fullfilment towards the completetion of **Gold Badge**. There are 
 Eight different Console Applications that are included in this project.Each is unique in solving a business challenge for an Insurance Company called **Komodo Insurance**
-# Foluso Adegboye
+
+# Challenges
+- [Challenge1 Cafe ]
+
